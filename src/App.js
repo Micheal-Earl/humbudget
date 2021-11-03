@@ -8,7 +8,7 @@ function App() {
   const citiesCollectionRef = collection(db, "cities");
 
   useEffect(() => {
-    async function getUsers() {
+    async function getCities() {
       const data = await getDocs(citiesCollectionRef);
       setCities(
         data.docs.map(function (doc) {
@@ -17,23 +17,50 @@ function App() {
       );
     }
 
-    getUsers();
+    getCities();
   }, []);
 
   return (
     <div className="App">
-      <h1>Firebase Test App wee</h1>
+      <h1>Test App</h1>
+      <AddCity />
       <ul>
         {cities.map(function (city) {
           return (
             <div>
+              <hr></hr>
               <li>Name: {city.name} </li>
               <li>Population: {city.population} </li>
-              <hr></hr>
             </div>
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+function AddCity() {
+  const [newCity, setNewCity] = useState("");
+  const [newPopulation, setNewPopulation] = useState(0);
+
+  async function createCity() {}
+
+  return (
+    <div>
+      <input
+        placeholder="City Name..."
+        onChange={function (event) {
+          setNewCity(event.target.value);
+        }}
+      />
+      <input
+        type="number"
+        placeholder="Population..."
+        onChange={function (event) {
+          setNewPopulation(event.target.value);
+        }}
+      />
+      <button onClick={createCity}> Add City </button>
     </div>
   );
 }
