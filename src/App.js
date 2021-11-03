@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase.js";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  addDoc,
+  updateDoc,
+} from "firebase/firestore";
 import "./App.css";
 
 const citiesCollectionRef = collection(db, "cities");
@@ -24,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <h1>Test App</h1>
-      <AddCity getCities={getCities} />
+      <CreateCity getCities={getCities} />
       <ul>
         {cities.map(function (city) {
           return (
@@ -32,6 +38,8 @@ function App() {
               <hr></hr>
               <li>Name: {city.name} </li>
               <li>Population: {city.population} </li>
+              <li>ID: {city.id} </li>
+              <UpdateCity getCities={getCities} city={city} />
             </div>
           );
         })}
@@ -40,14 +48,14 @@ function App() {
   );
 }
 
-function AddCity({ getCities }) {
+function CreateCity({ getCities }) {
   const [newCity, setNewCity] = useState("");
   const [newPopulation, setNewPopulation] = useState(0);
 
-  async function createCity() {
+  async function createCityDoc() {
     await addDoc(citiesCollectionRef, {
       name: newCity,
-      population: newPopulation,
+      population: Number(newPopulation),
     });
 
     // This function is passed down from parent component
@@ -69,7 +77,30 @@ function AddCity({ getCities }) {
           setNewPopulation(event.target.value);
         }}
       />
-      <button onClick={createCity}> Add City </button>
+      <button onClick={createCityDoc}> Add City </button>
+    </div>
+  );
+}
+
+function UpdateCity({ getCities, city }) {
+  async function updateCityDoc(id, population) {
+    const cityDoc = doc(db, "cities", id);
+    const newFields = { population: population + 1 };
+    await updateDoc(cityDoc, newFields);
+
+    // This function is passed down from parent component
+    getCities();
+  }
+
+  return (
+    <div>
+      <button
+        onClick={function () {
+          updateCityDoc(city.id, city.population);
+        }}
+      >
+        Increment Population
+      </button>
     </div>
   );
 }
