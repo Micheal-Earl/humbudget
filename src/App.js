@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase.js";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import "./App.css";
+
+const citiesCollectionRef = collection(db, "cities");
 
 function App() {
   const [cities, setCities] = useState([]);
-  const citiesCollectionRef = collection(db, "cities");
 
-  useEffect(() => {
-    async function getCities() {
-      const data = await getDocs(citiesCollectionRef);
-      setCities(
-        data.docs.map(function (doc) {
-          return { ...doc.data(), id: doc.id };
-        })
-      );
-    }
+  async function getCities() {
+    const data = await getDocs(citiesCollectionRef);
+    setCities(
+      data.docs.map(function (doc) {
+        return { ...doc.data(), id: doc.id };
+      })
+    );
+  }
 
+  useEffect(function () {
     getCities();
   }, []);
 
   return (
     <div className="App">
       <h1>Test App</h1>
-      <AddCity />
+      <AddCity getCities={getCities} />
       <ul>
         {cities.map(function (city) {
           return (
@@ -39,11 +40,19 @@ function App() {
   );
 }
 
-function AddCity() {
+function AddCity({ getCities }) {
   const [newCity, setNewCity] = useState("");
   const [newPopulation, setNewPopulation] = useState(0);
 
-  async function createCity() {}
+  async function createCity() {
+    await addDoc(citiesCollectionRef, {
+      name: newCity,
+      population: newPopulation,
+    });
+
+    // This function is passed down from parent component
+    getCities();
+  }
 
   return (
     <div>
