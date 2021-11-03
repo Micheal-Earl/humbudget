@@ -6,6 +6,7 @@ import {
   getDocs,
   addDoc,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import "./App.css";
 
@@ -40,6 +41,7 @@ function App() {
               <li>Population: {city.population} </li>
               <li>ID: {city.id} </li>
               <UpdateCity getCities={getCities} city={city} />
+              <DeleteCity getCities={getCities} city={city} />
             </div>
           );
         })}
@@ -64,6 +66,7 @@ function CreateCity({ getCities }) {
 
   return (
     <div>
+      <h2>Add a new city</h2>
       <input
         placeholder="City Name..."
         onChange={function (event) {
@@ -100,6 +103,27 @@ function UpdateCity({ getCities, city }) {
         }}
       >
         Increment Population
+      </button>
+    </div>
+  );
+}
+
+function DeleteCity({ getCities, city }) {
+  async function deleteCityDoc(id) {
+    const cityDoc = doc(db, "cities", id);
+    await deleteDoc(cityDoc);
+
+    // This function is passed down from parent component
+    getCities();
+  }
+  return (
+    <div>
+      <button
+        onClick={function () {
+          deleteCityDoc(city.id);
+        }}
+      >
+        Delete City
       </button>
     </div>
   );
