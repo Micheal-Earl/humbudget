@@ -116,6 +116,7 @@ function DeleteCity({ getCities, city }) {
     // This function is passed down from parent component
     getCities();
   }
+
   return (
     <div>
       <button
