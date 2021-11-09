@@ -2,14 +2,14 @@ import React from "react";
 import { db } from "../firebase.js";
 import { doc, deleteDoc } from "firebase/firestore";
 
-function DeleteCity({ getCities, city }) {
-  async function deleteCityDoc(id) {
+function DeleteTransaction({ getTransactions, transaction, userUID }) {
+  async function deleteTransactionDoc(id) {
     try {
-      const cityDoc = doc(db, "cities", id);
-      await deleteDoc(cityDoc);
+      const transactionDoc = doc(db, "users/" + userUID + "/transactions", id);
+      await deleteDoc(transactionDoc);
 
       // This function is passed down from parent component
-      getCities();
+      getTransactions();
     } catch (error) {
       console.log(error.message);
     }
@@ -19,13 +19,13 @@ function DeleteCity({ getCities, city }) {
     <div>
       <button
         onClick={function () {
-          deleteCityDoc(city.id);
+          deleteTransactionDoc(transaction.id);
         }}
       >
-        Delete City
+        Delete Transaction
       </button>
     </div>
   );
 }
 
-export default DeleteCity;
+export default DeleteTransaction;
