@@ -98,10 +98,6 @@ function Authentication({ setSuperUser }) {
 
           <button onClick={login}>Sign In</button>
         </div>
-
-        <h4>Currently logged in: {user?.email}</h4>
-
-        <button onClick={logout}>Sign out</button>
       </div>
     );
   }

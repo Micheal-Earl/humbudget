@@ -51,8 +51,7 @@ function App() {
   } else {
     return (
       <div className="App">
-        <h1>Test App</h1>
-        <p>Please sign in...</p>
+        <h1>Humbudget</h1>
         <Authentication setSuperUser={setSuperUser} />
       </div>
     );
