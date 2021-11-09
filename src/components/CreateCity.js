@@ -8,7 +8,7 @@ function CreateCity({ getCities }) {
   const [newCity, setNewCity] = useState("");
   const [newPopulation, setNewPopulation] = useState(0);
 
-  const createCityDoc = async () => {
+  async function createCityDoc() {
     await addDoc(citiesCollectionRef, {
       name: newCity,
       population: Number(newPopulation),
@@ -16,7 +16,7 @@ function CreateCity({ getCities }) {
 
     // This function is passed down from parent component
     getCities();
-  };
+  }
 
   return (
     <div>

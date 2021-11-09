@@ -12,14 +12,14 @@ const citiesCollectionRef = collection(db, "cities");
 function App() {
   const [cities, setCities] = useState([]);
 
-  const getCities = async () => {
+  async function getCities() {
     const data = await getDocs(citiesCollectionRef);
     setCities(
       data.docs.map((doc) => {
         return { ...doc.data(), id: doc.id };
       })
     );
-  };
+  }
 
   useEffect(function () {
     getCities();

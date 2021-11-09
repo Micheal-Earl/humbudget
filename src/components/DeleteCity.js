@@ -3,7 +3,7 @@ import { db } from "../firebase.js";
 import { doc, deleteDoc } from "firebase/firestore";
 
 function DeleteCity({ getCities, city }) {
-  const deleteCityDoc = async (id) => {
+  async function deleteCityDoc(id) {
     try {
       const cityDoc = doc(db, "cities", id);
       await deleteDoc(cityDoc);
@@ -13,7 +13,7 @@ function DeleteCity({ getCities, city }) {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
   return (
     <div>

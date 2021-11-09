@@ -1,9 +1,9 @@
 import React from "react";
 import { db } from "../firebase.js";
-import {  doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 function UpdateCity({ getCities, city }) {
-  const updateCityDoc = async (id, population) => {
+  async function updateCityDoc(id, population) {
     try {
       const cityDoc = doc(db, "cities", id);
       const newFields = { population: population + 1 };
@@ -14,7 +14,7 @@ function UpdateCity({ getCities, city }) {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }
 
   return (
     <div>
