@@ -8,16 +8,19 @@ import {
 } from "firebase/auth";
 import { setDoc, doc } from "@firebase/firestore";
 
-function Authentication() {
+function Authentication({ setSuperUser }) {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   onAuthStateChanged(auth, function (currentUser) {
     setUser(currentUser);
+
+    // move the user object to the parent component
+    setSuperUser(currentUser);
   });
 
   async function register() {
@@ -48,51 +51,60 @@ function Authentication() {
     await signOut(auth);
   }
 
-  return (
-    <div className="Auth">
-      <div>
-        <h3>Register new user</h3>
-        <input
-          placeholder="Email..."
-          onChange={function (event) {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-        <input
-          type="password"
-          placeholder="Password..."
-          onChange={function (event) {
-            setRegisterPassword(event.target.value);
-          }}
-        />
-
-        <button onClick={register}>Create User</button>
+  if (user != null) {
+    return (
+      <div className="Auth">
+        <h4>Currently logged in: {user?.email}</h4>
+        <button onClick={logout}>Sign out</button>
       </div>
+    );
+  } else {
+    return (
+      <div className="Auth">
+        <div>
+          <h3>Register new user</h3>
+          <input
+            placeholder="Email..."
+            onChange={function (event) {
+              setRegisterEmail(event.target.value);
+            }}
+          />
+          <input
+            type="password"
+            placeholder="Password..."
+            onChange={function (event) {
+              setRegisterPassword(event.target.value);
+            }}
+          />
 
-      <div>
-        <h3>Login</h3>
-        <input
-          placeholder="Email..."
-          onChange={function (event) {
-            setLoginEmail(event.target.value);
-          }}
-        />
-        <input
-          type="password"
-          placeholder="Password..."
-          onChange={function (event) {
-            setLoginPassword(event.target.value);
-          }}
-        />
+          <button onClick={register}>Create User</button>
+        </div>
 
-        <button onClick={login}>Sign In</button>
+        <div>
+          <h3>Login</h3>
+          <input
+            placeholder="Email..."
+            onChange={function (event) {
+              setLoginEmail(event.target.value);
+            }}
+          />
+          <input
+            type="password"
+            placeholder="Password..."
+            onChange={function (event) {
+              setLoginPassword(event.target.value);
+            }}
+          />
+
+          <button onClick={login}>Sign In</button>
+        </div>
+
+        <h4>Currently logged in: {user?.email}</h4>
+
+        <button onClick={logout}>Sign out</button>
       </div>
-
-      <h4>Currently logged in: {user?.email}</h4>
-
-      <button onClick={logout}>Sign out</button>
-    </div>
-  );
+    );
+  }
 }
 
 export default Authentication;
