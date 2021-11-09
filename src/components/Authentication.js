@@ -31,8 +31,6 @@ function Authentication({ setSuperUser }) {
         registerPassword
       ).then(function (userCredential) {
         // Place the new user into the database as a new user document
-        // then create a sub collection for their transactions as a child
-        // of that document
         setDoc(doc(db, "users", userCredential.user.uid), {
           email: registerEmail,
         });
@@ -54,6 +52,7 @@ function Authentication({ setSuperUser }) {
     await signOut(auth);
   }
 
+  // Only display register/login if user is not already logged in
   if (user != null) {
     return (
       <div className="Auth">

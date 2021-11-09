@@ -7,7 +7,7 @@ function CreateTransaction({ getTransactions, userUID }) {
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState("Default Category");
   const [merchant, setMerchant] = useState("Default Merchant");
-  const [date, setDate] = useState({});
+  const [date, setDate] = useState(null);
 
   async function createTransactionDoc() {
     const usersCollectionRef = collection(

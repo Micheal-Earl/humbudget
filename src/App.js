@@ -9,6 +9,10 @@ import "./App.css";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
+
+  // This state is my janky solution for passing data up to the parent component from
+  // the Authentication component. We can easily pass user state down to other child
+  // components with this variable.
   const [superUser, setSuperUser] = useState(null);
 
   async function getTransactions() {
@@ -20,10 +24,11 @@ function App() {
       db,
       "users/" + superUser.uid + "/transactions"
     );
+
+    // Get the documents in our users transaction collection
     const userData = await getDocs(usersCollectionRef);
     setTransactions(
       userData.docs.map((doc) => {
-        console.log(doc);
         return { ...doc.data(), id: doc.id };
       })
     );
@@ -39,6 +44,7 @@ function App() {
     [superUser]
   );
 
+  // Check if user is active, if so display relevant transactions
   if (superUser != null) {
     return (
       <div className="App">
