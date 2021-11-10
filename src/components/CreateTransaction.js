@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { db } from "../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
+import { Styles } from "../TailwindStyles.js";
 
 function CreateTransaction({ getTransactions, userUID }) {
   const [name, setName] = useState("Default Name");
@@ -27,16 +28,20 @@ function CreateTransaction({ getTransactions, userUID }) {
     getTransactions();
   }
 
+  // Tailwind styles, this is probably a bad way to do this
+
   return (
-    <div>
-      <h2>Add a new transaction</h2>
+    <div className="create-transaction mb-5">
+      <h2 className={Styles.h2}>Add a new transaction</h2>
       <input
+        className={Styles.input}
         placeholder="Name..."
         onChange={function (event) {
           setName(event.target.value);
         }}
       />
       <input
+        className={Styles.input}
         placeholder="Amount..."
         type="number"
         onChange={function (event) {
@@ -44,25 +49,29 @@ function CreateTransaction({ getTransactions, userUID }) {
         }}
       />
       <input
+        className={Styles.input}
         placeholder="Category..."
         onChange={function (event) {
           setCategory(event.target.value);
         }}
       />
       <input
+        className={Styles.input}
         placeholder="Merchant..."
         onChange={function (event) {
           setMerchant(event.target.value);
         }}
       />
       <input
-        placeholder="Date..."
+        className={Styles.input}
         type="date"
         onChange={function (event) {
           setDate(event.target.value);
         }}
       />
-      <button onClick={createTransactionDoc}> Add Transaction </button>
+      <button className={Styles.button} onClick={createTransactionDoc}>
+        Add Transaction
+      </button>
     </div>
   );
 }

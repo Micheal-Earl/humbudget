@@ -5,6 +5,7 @@ import CreateTransaction from "./components/CreateTransaction.js";
 import UpdateTransaction from "./components/UpdateTransaction.js";
 import DeleteTransaction from "./components/DeleteTransaction.js";
 import { collection, getDocs } from "firebase/firestore";
+import { Styles } from "./TailwindStyles.js";
 import "./App.css";
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
   if (superUser != null) {
     return (
       <div className="App">
-        <h1>Humbudget</h1>
+        <h1 className={Styles.h1}>Humbudget</h1>
         <Authentication setSuperUser={setSuperUser} />
         <CreateTransaction
           getTransactions={getTransactions}
@@ -59,7 +60,7 @@ function App() {
           {transactions.map((transaction) => {
             return (
               <div key={transaction.id}>
-                <hr></hr>
+                <hr className={Styles.hr}></hr>
                 <li>
                   <b>Transaction ID:</b> {transaction.id}
                 </li>
@@ -97,7 +98,7 @@ function App() {
   } else {
     return (
       <div className="App">
-        <h1>Humbudget</h1>
+        <h1 className={Styles.h1}>Humbudget</h1>
         <Authentication setSuperUser={setSuperUser} />
       </div>
     );

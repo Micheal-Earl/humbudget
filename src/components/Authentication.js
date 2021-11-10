@@ -7,6 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { setDoc, doc } from "@firebase/firestore";
+import { Styles } from "../TailwindStyles.js";
 
 function Authentication({ setSuperUser }) {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -56,22 +57,26 @@ function Authentication({ setSuperUser }) {
   if (user != null) {
     return (
       <div className="Auth">
-        <h4>Currently logged in: {user?.email}</h4>
-        <button onClick={logout}>Sign out</button>
+        <h4 className={Styles.h4}>Currently logged in as: {user?.email}</h4>
+        <button className={Styles.buttonRed} onClick={logout}>
+          Sign out
+        </button>
       </div>
     );
   } else {
     return (
       <div className="Auth">
         <div>
-          <h3>Register new user</h3>
+          <h4 className={Styles.h4}>Register new user</h4>
           <input
+            className={Styles.input}
             placeholder="Email..."
             onChange={function (event) {
               setRegisterEmail(event.target.value);
             }}
           />
           <input
+            className={Styles.input}
             type="password"
             placeholder="Password..."
             onChange={function (event) {
@@ -79,18 +84,22 @@ function Authentication({ setSuperUser }) {
             }}
           />
 
-          <button onClick={register}>Create User</button>
+          <button className={Styles.button} onClick={register}>
+            Create User
+          </button>
         </div>
 
         <div>
-          <h3>Login</h3>
+          <h4 className={Styles.h4}>Login</h4>
           <input
+            className={Styles.input}
             placeholder="Email..."
             onChange={function (event) {
               setLoginEmail(event.target.value);
             }}
           />
           <input
+            className={Styles.input}
             type="password"
             placeholder="Password..."
             onChange={function (event) {
@@ -98,7 +107,9 @@ function Authentication({ setSuperUser }) {
             }}
           />
 
-          <button onClick={login}>Sign In</button>
+          <button className={Styles.button} onClick={login}>
+            Sign In
+          </button>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import { db } from "../firebase.js";
 import { doc, updateDoc } from "firebase/firestore";
+import { Styles } from "../TailwindStyles.js";
 
 function UpdateTransaction({ getTransactions, transaction, userUID }) {
   async function updateCityDoc(id, amount) {
@@ -19,6 +20,7 @@ function UpdateTransaction({ getTransactions, transaction, userUID }) {
   return (
     <div>
       <button
+        className={Styles.buttonSmall}
         onClick={() => {
           updateCityDoc(transaction.id, transaction.amount);
         }}
