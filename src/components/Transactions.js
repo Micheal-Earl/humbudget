@@ -8,7 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { Styles } from "./TailwindStyles.js";
 import "./App.css";
 
-function App() {
+function Transactions() {
   const [transactions, setTransactions] = useState([]);
 
   // This state is my janky solution for passing data up to the parent component from
@@ -105,4 +105,4 @@ function App() {
   }
 }
 
-export default App;
+export default Transactions;

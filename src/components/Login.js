@@ -8,9 +8,7 @@ import {
 } from "firebase/auth";
 import { setDoc, doc } from "@firebase/firestore";
 
-function Authentication({ setSuperUser }) {
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+function Login({ setSuperUser }) {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -22,23 +20,6 @@ function Authentication({ setSuperUser }) {
     // move the user object to the parent component
     setSuperUser(currentUser);
   });
-
-  async function register() {
-    try {
-      await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      ).then(function (userCredential) {
-        // Place the new user into the database as a new user document
-        setDoc(doc(db, "users", userCredential.user.uid), {
-          email: registerEmail,
-        });
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
 
   async function login() {
     try {
@@ -98,7 +79,7 @@ function Authentication({ setSuperUser }) {
               />
             </div>
             <div class="flex items-center justify-between">
-              <button class="auth-btn" onClick={login}>
+              <button class="auth-button" onClick={login}>
                 Sign In
               </button>
               <a
@@ -115,4 +96,4 @@ function Authentication({ setSuperUser }) {
   }
 }
 
-export default Authentication;
+export default Login;

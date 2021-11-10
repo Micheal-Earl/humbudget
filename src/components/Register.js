@@ -62,53 +62,25 @@ function Authentication({ setSuperUser }) {
     );
   } else {
     return (
-      <div class="flex justify-center">
-        <div class="w-full max-w-xs">
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <div className="mb-4">
-              <label
-                class="block text-grey-darker text-sm font-bold mb-2"
-                for="username"
-              >
-                Email
-              </label>
-              <input
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
-                type="email"
-                placeholder="Email..."
-                onChange={function (event) {
-                  setLoginEmail(event.target.value);
-                }}
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                class="block text-grey-darker text-sm font-bold mb-2"
-                for="password"
-              >
-                Password
-              </label>
-              <input
-                class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                type="password"
-                placeholder="***************"
-                onChange={function (event) {
-                  setLoginPassword(event.target.value);
-                }}
-              />
-            </div>
-            <div class="flex items-center justify-between">
-              <button class="auth-btn" onClick={login}>
-                Sign In
-              </button>
-              <a
-                class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker"
-                href="#"
-              >
-                Forgot Password?
-              </a>
-            </div>
-          </form>
+      <div className="Auth">
+        <div>
+          <h3>Register new user</h3>
+          <input
+            placeholder="Email..."
+            onChange={function (event) {
+              setRegisterEmail(event.target.value);
+            }}
+          />
+          <input
+            type="password"
+            placeholder="Password..."
+            onChange={function (event) {
+              setRegisterPassword(event.target.value);
+            }}
+          />
+          <div class="flex items-center justify-between">
+            <button onClick={register}>Create User</button>
+          </div>
         </div>
       </div>
     );
