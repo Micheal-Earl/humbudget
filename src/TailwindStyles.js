@@ -2,7 +2,7 @@
 
 export const Styles = {
   input:
-    "border-2 border-primary rounded-md focus:outline-none text-md p-2 mb-3 mt-2 ",
+    "border-2 border-primary rounded-md text-gray-400 focus:outline-none text-md p-2 mb-3 mt-2 ",
   button:
     "border-2 p-2 pl-5 pr-5 bg-blue-500 text-gray-100 text-md rounded-md ",
   buttonRed:
