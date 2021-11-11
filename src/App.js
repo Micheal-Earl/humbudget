@@ -4,6 +4,7 @@ import Authentication from "./components/Authentication.js";
 import CreateTransaction from "./components/CreateTransaction.js";
 import UpdateTransaction from "./components/UpdateTransaction.js";
 import DeleteTransaction from "./components/DeleteTransaction.js";
+
 import { collection, getDocs } from "firebase/firestore";
 import { Styles } from "./TailwindStyles.js";
 import "./App.css";
@@ -49,7 +50,7 @@ function App() {
   if (superUser != null) {
     return (
       <div className="App">
-        <h1 className={Styles.h1}>Humbudget</h1>
+        <h1 className={Styles.h1}>HumBudget</h1>
         <Authentication setSuperUser={setSuperUser} />
         <CreateTransaction
           getTransactions={getTransactions}
@@ -98,7 +99,7 @@ function App() {
   } else {
     return (
       <div className="App">
-        <h1 className={Styles.h1}>Humbudget</h1>
+        <h1 className={Styles.h1}>HumBudget</h1>
         <Authentication setSuperUser={setSuperUser} />
       </div>
     );
