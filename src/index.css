@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 button.auth-btn {
   @apply bg-green-500;
   @apply hover:bg-green-700;
@@ -11,6 +9,7 @@ button.auth-btn {
   @apply py-2 px-4 rounded;
   @apply focus:outline-none;
 }
+
 button.signout-btn {
   @apply bg-red-500;
   @apply hover:bg-red-700;
