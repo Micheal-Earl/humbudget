@@ -1,7 +1,6 @@
 import React from "react";
 import { db } from "../firebase.js";
 import { doc, deleteDoc } from "firebase/firestore";
-import { Styles } from "../TailwindStyles.js";
 
 function DeleteTransaction({ getTransactions, transaction, userUID }) {
   async function deleteTransactionDoc(id) {
@@ -19,7 +18,7 @@ function DeleteTransaction({ getTransactions, transaction, userUID }) {
   return (
     <div>
       <button
-        className={Styles.buttonRedSmall}
+        className="buttonSmallRed"
         onClick={function () {
           deleteTransactionDoc(transaction.id);
         }}

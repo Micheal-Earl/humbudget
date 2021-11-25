@@ -7,7 +7,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { setDoc, doc } from "@firebase/firestore";
-import { Styles } from "../TailwindStyles.js";
 
 function Authentication({ setSuperUser }) {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -57,8 +56,8 @@ function Authentication({ setSuperUser }) {
   if (user != null) {
     return (
       <div className="Auth">
-        <h4 className={Styles.h4}>Currently logged in as: {user?.email}</h4>
-        <button className={Styles.buttonRed} onClick={logout}>
+        <h4 className="h4">Currently logged in as: {user?.email}</h4>
+        <button className="buttonRed" onClick={logout}>
           Sign out
         </button>
       </div>
@@ -67,16 +66,16 @@ function Authentication({ setSuperUser }) {
     return (
       <div className="Auth">
         <div>
-          <h4 className={Styles.h4}>Register new user</h4>
+          <h4 className="h4">Register new user</h4>
           <input
-            className={Styles.input}
+            className="input"
             placeholder="Email..."
             onChange={function (event) {
               setRegisterEmail(event.target.value);
             }}
           />
           <input
-            className={Styles.input}
+            className="input"
             type="password"
             placeholder="Password..."
             onChange={function (event) {
@@ -84,22 +83,22 @@ function Authentication({ setSuperUser }) {
             }}
           />
 
-          <button className={Styles.button} onClick={register}>
+          <button className="button" onClick={register}>
             Create User
           </button>
         </div>
 
         <div>
-          <h4 className={Styles.h4}>Login</h4>
+          <h4 className="h4">Login</h4>
           <input
-            className={Styles.input}
+            className="input"
             placeholder="Email..."
             onChange={function (event) {
               setLoginEmail(event.target.value);
             }}
           />
           <input
-            className={Styles.input}
+            className="input"
             type="password"
             placeholder="Password..."
             onChange={function (event) {
@@ -107,7 +106,7 @@ function Authentication({ setSuperUser }) {
             }}
           />
 
-          <button className={Styles.button} onClick={login}>
+          <button className="button" onClick={login}>
             Sign In
           </button>
         </div>
