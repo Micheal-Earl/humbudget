@@ -95,6 +95,7 @@ function App() {
             );
           })}
         </ul>
+        <Graph transactions={transactions} />
       </div>
     );
   } else {
@@ -102,20 +103,23 @@ function App() {
       <div className="App">
         <h1 className="h1">HumBudget</h1>
         <Authentication setSuperUser={setSuperUser} />
-        <Graph />
       </div>
     );
   }
 }
 
-function Graph() {
+function Graph({ transactions }) {
   // Dummy data for graph
-  const data = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 },
+  /*
+  const transactions = [
+    { date: new Date(2021, 1, 1), amount: 13 },
+    { date: new Date(2021, 2, 12), amount: 18 },
+    { date: new Date(2021, 3, 17), amount: 8 },
+    { date: new Date(2021, 4, 5), amount: 240 },
   ];
+  */
+
+  //let transactions = getTransactions();
 
   return (
     <div className="w-1/4">
@@ -123,19 +127,22 @@ function Graph() {
         // domainPadding will add space to each side of VictoryBar to
         // prevent it from overlapping the axis
         domainPadding={20}
+        height={300}
+        width={500}
+        scale={{ x: "time" }}
       >
         <VictoryAxis
-          // tickValues specifies both the number of ticks and where
-          // they are placed on the axis
-          tickValues={[1, 2, 3, 4]}
-          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+        // tickValues specifies both the number of ticks and where
+        // they are placed on the axis
+        //tickValues={[1, 2, 3, 4]}
+        //tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
         />
         <VictoryAxis
           dependentAxis
           // tickFormat specifies how ticks should be displayed
-          tickFormat={(x) => `$${x / 1000}k`}
+          tickFormat={(x) => `$${x}`}
         />
-        <VictoryBar data={data} x="quarter" y="earnings" />
+        <VictoryBar data={transactions} x="date" y="amount" />
       </VictoryChart>
     </div>
   );
