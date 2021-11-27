@@ -19,7 +19,7 @@ function UpdateTransaction({ getTransactions, transaction, userUID }) {
   return (
     <div>
       <button
-        className="buttonSmall"
+        className="buttonSmall w-1/6"
         onClick={() => {
           updateCityDoc(transaction.id, transaction.amount);
         }}

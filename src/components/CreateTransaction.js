@@ -5,8 +5,8 @@ import { collection, addDoc } from "firebase/firestore";
 function CreateTransaction({ getTransactions, userUID }) {
   const [name, setName] = useState("Default Name");
   const [amount, setAmount] = useState(0);
-  const [category, setCategory] = useState("Default Category");
-  const [merchant, setMerchant] = useState("Default Merchant");
+  const [category, setCategory] = useState("No Category");
+  const [merchant, setMerchant] = useState("No Merchant");
   const [date, setDate] = useState(null);
 
   async function createTransactionDoc() {

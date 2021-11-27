@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { db } from "./firebase.js";
 import { collection, getDocs } from "firebase/firestore";
 //import * as V from "victory";
-import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryAxis,
+  VictoryScatter,
+  VictoryLine,
+} from "victory";
 import Authentication from "./components/Authentication.js";
 import CreateTransaction from "./components/CreateTransaction.js";
 import UpdateTransaction from "./components/UpdateTransaction.js";
@@ -57,45 +63,43 @@ function App() {
           getTransactions={getTransactions}
           userUID={superUser.uid}
         />
-
-        <ul>
-          {transactions.map((transaction) => {
-            return (
-              <div key={transaction.id}>
-                <hr className="hr"></hr>
-                <li>
-                  <b>Transaction ID:</b> {transaction.id}
-                </li>
-                <li>
-                  <b>Transaction Name:</b> {transaction.name}
-                </li>
-                <li>
-                  <b>Transaction Amount:</b> {transaction.amount}
-                </li>
-                <li>
-                  <b>Transaction Category:</b> {transaction.category}
-                </li>
-                <li>
-                  <b>Transaction Merchant:</b> {transaction.merchant}
-                </li>
-                <li>
-                  <b>Transaction Date:</b> {transaction.date}
-                </li>
-                <UpdateTransaction
-                  getTransactions={getTransactions}
-                  transaction={transaction}
-                  userUID={superUser.uid}
-                />
-                <DeleteTransaction
-                  getTransactions={getTransactions}
-                  transaction={transaction}
-                  userUID={superUser.uid}
-                />
-              </div>
-            );
-          })}
-        </ul>
-        <Graph transactions={transactions} />
+        <div className="grid grid-cols-2">
+          <ul className="col-span-1">
+            {transactions.map((transaction) => {
+              return (
+                <div key={transaction.id}>
+                  <hr className="hr"></hr>
+                  <li>
+                    <b>Transaction Name:</b> {transaction.name}
+                  </li>
+                  <li>
+                    <b>Transaction Amount:</b> ${transaction.amount}
+                  </li>
+                  <li>
+                    <b>Transaction Category:</b> {transaction.category}
+                  </li>
+                  <li>
+                    <b>Transaction Merchant:</b> {transaction.merchant}
+                  </li>
+                  <li>
+                    <b>Transaction Date:</b> {transaction.date}
+                  </li>
+                  <UpdateTransaction
+                    getTransactions={getTransactions}
+                    transaction={transaction}
+                    userUID={superUser.uid}
+                  />
+                  <DeleteTransaction
+                    getTransactions={getTransactions}
+                    transaction={transaction}
+                    userUID={superUser.uid}
+                  />
+                </div>
+              );
+            })}
+          </ul>
+          <Graph className="col-auto" transactions={transactions} />
+        </div>
       </div>
     );
   } else {
@@ -119,30 +123,43 @@ function Graph({ transactions }) {
   ];
   */
 
+  const sortedTransactions = transactions
+    .slice()
+    .sort((a, b) => b.date - a.date);
+
   //let transactions = getTransactions();
 
   return (
-    <div className="w-1/4">
+    <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
       <VictoryChart
+        className="w-1/2"
         // domainPadding will add space to each side of VictoryBar to
         // prevent it from overlapping the axis
         domainPadding={20}
-        height={300}
-        width={500}
         scale={{ x: "time" }}
       >
-        <VictoryAxis
-        // tickValues specifies both the number of ticks and where
-        // they are placed on the axis
-        //tickValues={[1, 2, 3, 4]}
-        //tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-        />
+        <VictoryAxis />
         <VictoryAxis
           dependentAxis
           // tickFormat specifies how ticks should be displayed
           tickFormat={(x) => `$${x}`}
         />
-        <VictoryBar data={transactions} x="date" y="amount" />
+        <VictoryBar data={sortedTransactions} x="date" y="amount" />
+      </VictoryChart>
+      <VictoryChart className="w-1/2" domainPadding={20}>
+        <VictoryAxis />
+        <VictoryAxis dependentAxis tickFormat={(x) => `$${x}`} />
+        <VictoryBar data={sortedTransactions} x="merchant" y="amount" />
+      </VictoryChart>
+      <VictoryChart className="w-1/2" domainPadding={20}>
+        <VictoryAxis />
+        <VictoryAxis dependentAxis tickFormat={(x) => `$${x}`} />
+        <VictoryBar data={sortedTransactions} x="category" y="amount" />
+      </VictoryChart>
+      <VictoryChart className="w-1/2" domainPadding={20}>
+        <VictoryAxis />
+        <VictoryAxis dependentAxis tickFormat={(x) => `$${x}`} />
+        <VictoryBar data={sortedTransactions} x="name" y="amount" />
       </VictoryChart>
     </div>
   );
