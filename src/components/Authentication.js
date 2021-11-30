@@ -55,7 +55,7 @@ function Authentication({ setSuperUser }) {
   // Only display register/login if user is not already logged in
   if (user != null) {
     return (
-      <div className="Auth">
+      <div className="Auth mb-5 max-w-7xl rounded shadow-lg bg-white p-8 mt-3">
         <h4 className="h4">Currently logged in as: {user?.email}</h4>
         <button className="buttonRed" onClick={logout}>
           Sign out
@@ -65,30 +65,7 @@ function Authentication({ setSuperUser }) {
   } else {
     return (
       <div className="Auth">
-        <div>
-          <h4 className="h4">Register new user</h4>
-          <input
-            className="input"
-            placeholder="Email..."
-            onChange={function (event) {
-              setRegisterEmail(event.target.value);
-            }}
-          />
-          <input
-            className="input"
-            type="password"
-            placeholder="Password..."
-            onChange={function (event) {
-              setRegisterPassword(event.target.value);
-            }}
-          />
-
-          <button className="button" onClick={register}>
-            Create User
-          </button>
-        </div>
-
-        <div>
+        <div className="w-1/3 rounded shadow-lg bg-white p-8 mt-3">
           <h4 className="h4">Login</h4>
           <input
             className="input"
@@ -108,6 +85,28 @@ function Authentication({ setSuperUser }) {
 
           <button className="button" onClick={login}>
             Sign In
+          </button>
+        </div>
+        <div className="w-1/3 rounded shadow-lg bg-white p-8 mt-3">
+          <h4 className="h4">Register new user</h4>
+          <input
+            className="input"
+            placeholder="Email..."
+            onChange={function (event) {
+              setRegisterEmail(event.target.value);
+            }}
+          />
+          <input
+            className="input"
+            type="password"
+            placeholder="Password..."
+            onChange={function (event) {
+              setRegisterPassword(event.target.value);
+            }}
+          />
+
+          <button className="button" onClick={register}>
+            Create User
           </button>
         </div>
       </div>

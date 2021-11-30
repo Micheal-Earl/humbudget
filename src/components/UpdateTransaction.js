@@ -19,12 +19,12 @@ function UpdateTransaction({ getTransactions, transaction, userUID }) {
   return (
     <div>
       <button
-        className="buttonSmall w-1/6"
+        className="buttonSmall"
         onClick={() => {
           updateCityDoc(transaction.id, transaction.amount);
         }}
       >
-        Increment Amount
+        Edit
       </button>
     </div>
   );

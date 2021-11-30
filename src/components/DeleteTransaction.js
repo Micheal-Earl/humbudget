@@ -18,12 +18,12 @@ function DeleteTransaction({ getTransactions, transaction, userUID }) {
   return (
     <div>
       <button
-        className="buttonSmallRed w-1/6"
+        className="buttonSmallRed"
         onClick={function () {
           deleteTransactionDoc(transaction.id);
         }}
       >
-        Delete Transaction
+        Delete
       </button>
     </div>
   );

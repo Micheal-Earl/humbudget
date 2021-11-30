@@ -67,12 +67,11 @@ function App() {
           getTransactions={getTransactions}
           userUID={superUser.uid}
         />
-        <div className="grid grid-cols-2">
-          <ul className="col-span-1">
+        <div className="grid grid-cols-2 mb-5">
+          <ul className="col-span-1 mb-5 w-11/12 rounded shadow-lg bg-white p-8 mt-3">
             {transactions.map((transaction) => {
               return (
                 <div key={transaction.id}>
-                  <hr className="hr"></hr>
                   <li>
                     <b>Transaction Name:</b> {transaction.name}
                   </li>
@@ -88,16 +87,19 @@ function App() {
                   <li>
                     <b>Transaction Date:</b> {transaction.date}
                   </li>
-                  <UpdateTransaction
-                    getTransactions={getTransactions}
-                    transaction={transaction}
-                    userUID={superUser.uid}
-                  />
-                  <DeleteTransaction
-                    getTransactions={getTransactions}
-                    transaction={transaction}
-                    userUID={superUser.uid}
-                  />
+                  <li className="grid grid-cols-2 w-1/6">
+                    <UpdateTransaction
+                      getTransactions={getTransactions}
+                      transaction={transaction}
+                      userUID={superUser.uid}
+                    />
+                    <DeleteTransaction
+                      getTransactions={getTransactions}
+                      transaction={transaction}
+                      userUID={superUser.uid}
+                    />
+                  </li>
+                  <hr className="hr"></hr>
                 </div>
               );
             })}
@@ -134,7 +136,7 @@ function Graph({ transactions }) {
   //let transactions = getTransactions();
 
   return (
-    <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2">
+    <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 w-11/12 rounded shadow-lg bg-white p-4">
       <VictoryChart
         className="w-1/2"
         // domainPadding will add space to each side of VictoryBar to
