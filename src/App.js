@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { db } from "./firebase.js";
 import { collection, getDocs } from "firebase/firestore";
 //import * as V from "victory";
-import {
-  VictoryBar,
-  VictoryChart,
-  VictoryAxis,
-  VictoryScatter,
-  VictoryLine,
-} from "victory";
+import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
 import Authentication from "./components/Authentication.js";
 import CreateTransaction from "./components/CreateTransaction.js";
 import UpdateTransaction from "./components/UpdateTransaction.js";
@@ -58,6 +53,15 @@ function App() {
     return (
       <div className="App">
         <h1 className="h1">HumBudget</h1>
+        <div className="nav text text-lg">
+          <Link className="text-blue-500" to="/">
+            <b>Home</b>
+          </Link>{" "}
+          |{" "}
+          <Link className="text-blue-500" to="/recommendations">
+            Recommendations
+          </Link>
+        </div>
         <Authentication setSuperUser={setSuperUser} />
         <CreateTransaction
           getTransactions={getTransactions}
