@@ -68,7 +68,7 @@ function App() {
           userUID={superUser.uid}
         />
         <div className="grid grid-cols-2 mb-5">
-          <ul className="col-span-1 mb-5 w-11/12 rounded shadow-lg bg-white p-8 mt-3">
+          <ul className="col-span-1 max-width-full rounded shadow-lg bg-white p-8 mt-3 mr-5">
             {transactions.map((transaction) => {
               return (
                 <div key={transaction.id}>
@@ -87,7 +87,7 @@ function App() {
                   <li>
                     <b>Transaction Date:</b> {transaction.date}
                   </li>
-                  <li className="grid grid-cols-2 w-1/6">
+                  <li className="flex">
                     <UpdateTransaction
                       getTransactions={getTransactions}
                       transaction={transaction}
@@ -136,7 +136,7 @@ function Graph({ transactions }) {
   //let transactions = getTransactions();
 
   return (
-    <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 w-11/12 rounded shadow-lg bg-white p-4">
+    <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 max-w-full rounded shadow-lg bg-white p-4 mt-3 mr-5">
       <VictoryChart
         className="w-1/2"
         // domainPadding will add space to each side of VictoryBar to

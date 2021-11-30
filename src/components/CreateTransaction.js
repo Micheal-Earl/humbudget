@@ -30,7 +30,7 @@ function CreateTransaction({ getTransactions, userUID }) {
   // Tailwind styles, this is probably a bad way to do this
 
   return (
-    <div className="create-transaction mb-5 max-w-7xl  rounded shadow-lg bg-white p-8 mt-3">
+    <div className="create-transaction mb-2 max-w-7xl rounded shadow-lg bg-white p-8 mt-3">
       <h2 className="h2">Add a new transaction</h2>
       <input
         className="input"
