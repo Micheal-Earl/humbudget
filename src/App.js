@@ -68,24 +68,18 @@ function App() {
           userUID={superUser.uid}
         />
         <div className="grid grid-cols-2 mb-5">
-          <ul className="col-span-1 max-width-full rounded shadow-lg bg-white p-8 mt-3 mr-5">
+          <ul className="col-span-1 mr-5">
             {transactions.map((transaction) => {
               return (
-                <div key={transaction.id}>
+                <div
+                  className="mb-2 max-w-7xl rounded shadow-lg bg-white p-8 mt-3"
+                  key={transaction.id}
+                >
                   <li>
-                    <b>Transaction Name:</b> {transaction.name}
-                  </li>
-                  <li>
-                    <b>Transaction Amount:</b> ${transaction.amount}
-                  </li>
-                  <li>
-                    <b>Transaction Category:</b> {transaction.category}
-                  </li>
-                  <li>
-                    <b>Transaction Merchant:</b> {transaction.merchant}
-                  </li>
-                  <li>
-                    <b>Transaction Date:</b> {transaction.date}
+                    <b>Name:</b> {transaction.name} | <b>Amount:</b> ${" "}
+                    {transaction.amount} | <b>Category:</b>{" "}
+                    {transaction.category} | <b>Merchant:</b>{" "}
+                    {transaction.merchant} | <b>Date:</b> {transaction.date}
                   </li>
                   <li className="flex">
                     <UpdateTransaction
@@ -99,7 +93,6 @@ function App() {
                       userUID={superUser.uid}
                     />
                   </li>
-                  <hr className="hr"></hr>
                 </div>
               );
             })}
