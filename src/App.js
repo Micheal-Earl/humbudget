@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { db } from "./firebase.js";
 import { collection, getDocs } from "firebase/firestore";
 //import * as V from "victory";
-import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryAxis,
+  VictoryTheme,
+  VictoryLabel,
+} from "victory";
 import Authentication from "./components/Authentication.js";
 import CreateTransaction from "./components/CreateTransaction.js";
 import UpdateTransaction from "./components/UpdateTransaction.js";
@@ -120,43 +126,101 @@ function Graph({ transactions }) {
   ];
   */
 
-  const sortedTransactions = transactions
-    .slice()
-    .sort((a, b) => b.date - a.date);
+  const sortedTransactions = transactions.sort(function (a, b) {
+    // Turn your strings into dates, and then subtract them
+    // to get a value that is either negative, positive, or zero.
+    return new Date(a.date) - new Date(b.date);
+  });
 
   //let transactions = getTransactions();
 
   return (
-    <div className="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 max-w-full rounded shadow-lg bg-white p-4 mt-3 mr-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 max-w-full rounded shadow-lg bg-white p-4 mt-3 mr-5">
       <VictoryChart
-        className="w-1/2"
+        //className="w-1/2"
         // domainPadding will add space to each side of VictoryBar to
         // prevent it from overlapping the axis
-        domainPadding={20}
+        domainPadding={50}
+        height={300}
+        theme={VictoryTheme.material}
         scale={{ x: "time" }}
       >
-        <VictoryAxis />
+        <VictoryLabel text="Money Spent by Date" />
+        <VictoryAxis fixLabelOverlap={true} />
         <VictoryAxis
+          fixLabelOverlap={true}
           dependentAxis
           // tickFormat specifies how ticks should be displayed
           tickFormat={(x) => `$${x}`}
         />
-        <VictoryBar data={sortedTransactions} x="date" y="amount" />
+        <VictoryBar
+          style={{ data: { fill: "#fbbf24" } }}
+          data={sortedTransactions}
+          x="date"
+          y="amount"
+        />
       </VictoryChart>
-      <VictoryChart className="w-1/2" domainPadding={20}>
-        <VictoryAxis />
-        <VictoryAxis dependentAxis tickFormat={(x) => `$${x}`} />
-        <VictoryBar data={sortedTransactions} x="merchant" y="amount" />
+      <VictoryChart
+        theme={VictoryTheme.material}
+        //className="w-1/2"
+        domainPadding={50}
+        height={300}
+      >
+        <VictoryLabel text="Money Spent by Merchant" />
+        <VictoryAxis fixLabelOverlap={true} />
+        <VictoryAxis
+          fixLabelOverlap={true}
+          style={{ data: { fill: "#fbbf24" } }}
+          dependentAxis
+          tickFormat={(x) => `$${x}`}
+        />
+        <VictoryBar
+          style={{ data: { fill: "#059669" } }}
+          data={sortedTransactions}
+          x="merchant"
+          y="amount"
+        />
       </VictoryChart>
-      <VictoryChart className="w-1/2" domainPadding={20}>
-        <VictoryAxis />
-        <VictoryAxis dependentAxis tickFormat={(x) => `$${x}`} />
-        <VictoryBar data={sortedTransactions} x="category" y="amount" />
+      <VictoryChart
+        theme={VictoryTheme.material}
+        //className="w-1/2"
+        domainPadding={50}
+        height={300}
+      >
+        <VictoryLabel text="Money Spent by Category" />
+        <VictoryAxis fixLabelOverlap={true} />
+        <VictoryAxis
+          fixLabelOverlap={true}
+          dependentAxis
+          tickFormat={(x) => `$${x}`}
+        />
+        <VictoryBar
+          style={{ data: { fill: "#059669" } }}
+          data={sortedTransactions}
+          x="category"
+          y="amount"
+        />
       </VictoryChart>
-      <VictoryChart className="w-1/2" domainPadding={20}>
-        <VictoryAxis />
-        <VictoryAxis dependentAxis tickFormat={(x) => `$${x}`} />
-        <VictoryBar data={sortedTransactions} x="name" y="amount" />
+      <VictoryChart
+        theme={VictoryTheme.material}
+        //className="w-1/2"
+        domainPadding={50}
+        height={300}
+      >
+        <VictoryLabel text="Money Spent by Product" />
+        <VictoryAxis fixLabelOverlap={true} />
+        <VictoryAxis
+          fixLabelOverlap={true}
+          dependentAxis
+          tickFormat={(x) => `$${x}`}
+        />
+        <VictoryBar
+          horizontal
+          style={{ data: { fill: "#fbbf24" } }}
+          data={sortedTransactions}
+          x="name"
+          y="amount"
+        />
       </VictoryChart>
     </div>
   );
