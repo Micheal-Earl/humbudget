@@ -8,6 +8,7 @@ import Authentication from "./components/Authentication.js";
 import CreateTransaction from "./components/CreateTransaction.js";
 import UpdateTransaction from "./components/UpdateTransaction.js";
 import DeleteTransaction from "./components/DeleteTransaction.js";
+import Navigation from "./components/Navigation.js";
 
 import "./App.css";
 
@@ -52,59 +53,55 @@ function App() {
   if (superUser != null) {
     return (
       <div className="App">
-        <h1 className="h1">HumBudget</h1>
-        <div className="nav text text-lg">
-          <Link className="text-blue-500" to="/">
-            <b>Home</b>
-          </Link>{" "}
-          |{" "}
-          <Link className="text-blue-500" to="/recommendations">
-            Recommendations
-          </Link>
-        </div>
-        <Authentication setSuperUser={setSuperUser} />
-        <CreateTransaction
-          getTransactions={getTransactions}
-          userUID={superUser.uid}
-        />
-        <div className="grid grid-cols-2 mb-5">
-          <ul className="col-span-1 mr-5">
-            {transactions.map((transaction) => {
-              return (
-                <div
-                  className="mb-2 max-w-7xl rounded shadow-lg bg-white p-8 mt-3"
-                  key={transaction.id}
-                >
-                  <li>
-                    <b>Name:</b> {transaction.name} | <b>Amount:</b> ${" "}
-                    {transaction.amount} | <b>Category:</b>{" "}
-                    {transaction.category} | <b>Merchant:</b>{" "}
-                    {transaction.merchant} | <b>Date:</b> {transaction.date}
-                  </li>
-                  <li className="flex">
-                    <UpdateTransaction
-                      getTransactions={getTransactions}
-                      transaction={transaction}
-                      userUID={superUser.uid}
-                    />
-                    <DeleteTransaction
-                      getTransactions={getTransactions}
-                      transaction={transaction}
-                      userUID={superUser.uid}
-                    />
-                  </li>
-                </div>
-              );
-            })}
-          </ul>
-          <Graph className="col-auto" transactions={transactions} />
+        <Navigation />
+        <div className="ApplicationContainer">
+          <Authentication setSuperUser={setSuperUser} />
+          <CreateTransaction
+            getTransactions={getTransactions}
+            userUID={superUser.uid}
+          />
+          <div className="grid grid-cols-2 mb-5">
+            <ul className="col-span-1 mr-5">
+              {transactions.map((transaction) => {
+                return (
+                  <div
+                    className="mb-2 max-w-7xl rounded shadow-lg bg-white p-8 mt-3"
+                    key={transaction.id}
+                  >
+                    <li>
+                      <b>Name:</b> {transaction.name} | <b>Amount:</b> ${" "}
+                      {transaction.amount} | <b>Category:</b>{" "}
+                      {transaction.category} | <b>Merchant:</b>{" "}
+                      {transaction.merchant} | <b>Date:</b> {transaction.date}
+                    </li>
+                    <li className="flex">
+                      <UpdateTransaction
+                        getTransactions={getTransactions}
+                        transaction={transaction}
+                        userUID={superUser.uid}
+                      />
+                      <DeleteTransaction
+                        getTransactions={getTransactions}
+                        transaction={transaction}
+                        userUID={superUser.uid}
+                      />
+                    </li>
+                  </div>
+                );
+              })}
+            </ul>
+            <Graph className="col-auto" transactions={transactions} />
+          </div>
         </div>
       </div>
     );
   } else {
     return (
       <div className="App">
-        <h1 className="h1">HumBudget</h1>
+        <h1 className="h1">
+          <span className="text-green-600">Hum</span>
+          <span className="text-yellow-400">Budget</span>
+        </h1>
         <Authentication setSuperUser={setSuperUser} />
       </div>
     );

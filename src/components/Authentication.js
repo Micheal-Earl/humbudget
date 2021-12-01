@@ -64,50 +64,76 @@ function Authentication({ setSuperUser }) {
     );
   } else {
     return (
-      <div className="Auth">
-        <div className="w-1/3 rounded shadow-lg bg-white p-8 mt-3">
-          <h4 className="h4">Login</h4>
-          <input
-            className="input"
-            placeholder="Email..."
-            onChange={function (event) {
-              setLoginEmail(event.target.value);
-            }}
-          />
-          <input
-            className="input"
-            type="password"
-            placeholder="Password..."
-            onChange={function (event) {
-              setLoginPassword(event.target.value);
-            }}
-          />
-
-          <button className="button" onClick={login}>
-            Sign In
-          </button>
-        </div>
-        <div className="w-1/3 rounded shadow-lg bg-white p-8 mt-3">
-          <h4 className="h4">Register new user</h4>
-          <input
-            className="input"
-            placeholder="Email..."
-            onChange={function (event) {
-              setRegisterEmail(event.target.value);
-            }}
-          />
-          <input
-            className="input"
-            type="password"
-            placeholder="Password..."
-            onChange={function (event) {
-              setRegisterPassword(event.target.value);
-            }}
-          />
-
-          <button className="button" onClick={register}>
-            Create User
-          </button>
+      <div className="flex justify-center">
+        <div className="w-full max-w-xs">
+          <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <label className="block text-grey-darker text-sm font-bold mb-2">
+                Email
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+                type="email"
+                placeholder="Email..."
+                onChange={function (event) {
+                  setLoginEmail(event.target.value);
+                }}
+              />
+        
+            
+              <label className="block text-grey-darker text-sm font-bold mt-4 mb-2">
+                Password
+              </label>
+              <input
+                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                type="password"
+                placeholder="***************"
+                onChange={function (event) {
+                  setLoginPassword(event.target.value);
+                }}
+              />
+          
+            <div className="flex items-center justify-between mt-4">
+              <button className="auth-btn" onClick={login}>
+                Sign In
+              </button>
+            </div>
+          </div>
+          
+          <hr></hr>
+      
+         <div className="flex justify-center mb-4 mt-2 font-bold">Register new user</div>
+          <div>
+            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div className="mb-4">
+              <label className="block text-grey-darker text-sm font-bold mb-2">
+                Email
+              </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+                  placeholder="Email..."
+                  onChange={function (event) {
+                    setRegisterEmail(event.target.value);
+                  }}
+                />
+              </div>
+              <label className="block text-grey-darker text-sm font-bold mt-4 mb-2">
+                Password
+              </label>
+              <input
+                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                type="password"
+                placeholder="***************"
+                onChange={function (event) {
+                  setRegisterPassword(event.target.value);
+                }}
+              />
+              <div className="flex items-center justify-between mt-4">
+                <button className="auth-btn" onClick={register}>
+                  Create User
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

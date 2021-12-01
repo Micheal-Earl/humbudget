@@ -68,7 +68,7 @@ function CreateTransaction({ getTransactions, userUID }) {
           setDate(event.target.value);
         }}
       />
-      <button className="button" onClick={createTransactionDoc}>
+      <button className="auth-btn" onClick={createTransactionDoc}>
         Add Transaction
       </button>
     </div>
