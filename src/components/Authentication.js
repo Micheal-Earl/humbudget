@@ -55,9 +55,9 @@ function Authentication({ setSuperUser }) {
   // Only display register/login if user is not already logged in
   if (user != null) {
     return (
-      <div className="Auth mb-5 max-w-7xl rounded shadow-lg bg-white p-8 mt-3">
-        <h4 className="h4">Currently logged in as: {user?.email}</h4>
-        <button className="buttonRed" onClick={logout}>
+      <div className="Auth ml-5 mb-2 rounded shadow-lg bg-white p-8 mt-3 mr-5">
+        <h4 className="h4">Logged in as: {user?.email}</h4>
+        <button className="buttonGold" onClick={logout}>
           Sign out
         </button>
       </div>
@@ -67,47 +67,48 @@ function Authentication({ setSuperUser }) {
       <div className="flex justify-center">
         <div className="w-full max-w-xs">
           <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <label className="block text-grey-darker text-sm font-bold mb-2">
-                Email
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
-                type="email"
-                placeholder="Email..."
-                onChange={function (event) {
-                  setLoginEmail(event.target.value);
-                }}
-              />
-        
-            
-              <label className="block text-grey-darker text-sm font-bold mt-4 mb-2">
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                type="password"
-                placeholder="***************"
-                onChange={function (event) {
-                  setLoginPassword(event.target.value);
-                }}
-              />
-          
+            <label className="block text-grey-darker text-sm font-bold mb-2">
+              Email
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+              type="email"
+              placeholder="Email..."
+              onChange={function (event) {
+                setLoginEmail(event.target.value);
+              }}
+            />
+
+            <label className="block text-grey-darker text-sm font-bold mt-4 mb-2">
+              Password
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight"
+              type="password"
+              placeholder="***************"
+              onChange={function (event) {
+                setLoginPassword(event.target.value);
+              }}
+            />
+
             <div className="flex items-center justify-between mt-4">
               <button className="auth-btn" onClick={login}>
                 Sign In
               </button>
             </div>
           </div>
-          
+
           <hr></hr>
-      
-         <div className="flex justify-center mb-4 mt-2 font-bold">Register new user</div>
+
+          <div className="flex justify-center mb-4 mt-2 font-bold text-green-600">
+            Register new user
+          </div>
           <div>
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <div className="mb-4">
-              <label className="block text-grey-darker text-sm font-bold mb-2">
-                Email
-              </label>
+                <label className="block text-grey-darker text-sm font-bold mb-2">
+                  Email
+                </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
                   placeholder="Email..."
@@ -120,7 +121,7 @@ function Authentication({ setSuperUser }) {
                 Password
               </label>
               <input
-                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:shadow-outline"
                 type="password"
                 placeholder="***************"
                 onChange={function (event) {

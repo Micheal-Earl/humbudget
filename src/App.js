@@ -54,11 +54,13 @@ function App() {
       <div className="App">
         <Navigation />
         <div className="ApplicationContainer">
-          <Authentication setSuperUser={setSuperUser} />
-          <CreateTransaction
-            getTransactions={getTransactions}
-            userUID={superUser.uid}
-          />
+          <div className="flex">
+            <CreateTransaction
+              getTransactions={getTransactions}
+              userUID={superUser.uid}
+            />
+            <Authentication setSuperUser={setSuperUser} />
+          </div>
           <div className="grid grid-cols-2 mb-5">
             <ul className="col-span-1 mr-5">
               {transactions.map((transaction) => {
@@ -96,7 +98,7 @@ function App() {
     );
   } else {
     return (
-      <div className="App">
+      <div className="App center text-center">
         <h1 className="h1">
           <span className="text-green-600">Hum</span>
           <span className="text-yellow-400">Budget</span>

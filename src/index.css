@@ -3,11 +3,10 @@
 @import "tailwindcss/utilities";
 
 @layer base {
-  .restaurant-title{
-    font-family: 'Merriweather', serif;
+  .restaurant-title {
+    font-family: "Merriweather", serif;
   }
 }
-
 
 button.auth-btn {
   @apply bg-green-600;
@@ -25,9 +24,8 @@ button.signout-btn {
   @apply focus:outline-none;
 }
 
-.restaurant-title{
+.restaurant-title {
   @apply text-2xl font-bold text-gray-800 mt-3 mb-3 font-mono;
-
 }
 
 .input {
@@ -39,13 +37,17 @@ button.signout-btn {
 }
 
 .buttonRed {
-  @apply border-2 p-2 pl-5 pr-5 bg-red-500 text-gray-100 rounded-md;
+  @apply border-2 p-2 pl-5 pr-5 bg-red-400 text-gray-100 rounded-md;
+}
+
+.buttonGold {
+  @apply border-2 p-2 pl-5 pr-5 bg-yellow-400 hover:bg-yellow-500 text-gray-100 rounded-md;
 }
 
 .buttonSmall {
   @apply mt-1 p-1 pl-3 pr-3 bg-green-600 hover:bg-green-700 text-gray-100 text-sm rounded-sm;
 }
-.buttonLargeGreen{
+.buttonLargeGreen {
   @apply mt-3 p-1 pl-3 pr-3 w-full bg-green-600 hover:bg-green-700 text-gray-100 text-sm rounded-lg;
 }
 
@@ -53,14 +55,8 @@ button.signout-btn {
   @apply mt-1 p-1 pl-3 pr-3 bg-yellow-400 hover:bg-yellow-500 text-gray-100 text-sm rounded-sm;
 }
 
-
-.buttonLargeGold{
+.buttonLargeGold {
   @apply mt-3 p-1 pl-3 pr-3 w-full bg-yellow-400 hover:bg-yellow-500 text-gray-100 text-sm rounded-lg;
-}
-
-
-.buttonSmallRed {
-  @apply mt-1 p-1 pl-3 pr-3 bg-red-500 text-gray-100 text-sm rounded-sm;
 }
 
 .h1 {

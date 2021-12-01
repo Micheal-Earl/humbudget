@@ -10,7 +10,7 @@ function Restaurant({ restaurantData }) {
         class="h-48 lg:h-auto lg:w-48 rounded-r-none flex-none bg-cover rounded text-center"
         style={{ backgroundImage: "url(" + img + ")" }}
       ></div>
-      <div class="bg-white rounded p-4 flex flex-col justify-between leading-normal w-full">
+      <div class="bg-white rounded p-4 flex flex-col justify-between leading-normal w-full h-full">
         <div class="mb-8">
           <div class="text-gray-900 font-bold text-xl mb-2">{name}</div>
           <p class="text-gray-700 text-base">{description}</p>
@@ -40,7 +40,7 @@ function Restaurant({ restaurantData }) {
 
 function Restaurants() {
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid sm:grid-cols-1 md:grid-cols-2">
       {RESTAURANTS.map((RESTAURANT) => {
         return <Restaurant key={RESTAURANT.id} restaurantData={RESTAURANT} />;
       })}
