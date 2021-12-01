@@ -8,6 +8,7 @@ import {
   VictoryAxis,
   VictoryTheme,
   VictoryLabel,
+  VictoryPie,
 } from "victory";
 import Authentication from "./components/Authentication.js";
 import CreateTransaction from "./components/CreateTransaction.js";
@@ -222,6 +223,16 @@ function Graph({ transactions }) {
           y="amount"
         />
       </VictoryChart>
+      <div>
+      <VictoryLabel text="Money Spent by Product" />
+        <VictoryPie
+        theme={VictoryTheme.material}
+          data={sortedTransactions}
+          x="name"
+          y="amount"
+          height="250"
+        />
+    </div>
     </div>
   );
 }
