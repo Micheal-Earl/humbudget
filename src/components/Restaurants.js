@@ -1,63 +1,51 @@
-import React, { Component } from "react";
+import React from "react";
 import RESTAURANTS from "../data/restaurants";
 
-class Restaurant extends Component {
-  render() {
-    const { name, description, rating, price, link } = this.props.restaurant;
+function Restaurant({ restaurantData }) {
+  const { name, description, rating, price, img, link } = restaurantData;
 
-    return (
-      <div>
-        <div className="rec rounded shadow-lg bg-white p-8 mt-5 mr-5 ml-5">
-          <h3 className="h3">{name}</h3>
-          <p className="relative">
-            {description}
-            <div>
-              <div>
-                <ul class="flex justify-right mt-5 mb-3 ">
-                  <li>
-                    <i class="fa-star fa-sm text-yellow-500 mr-1"></i>
-                  </li>
-                  <li>
-                    <i class="fas fa-star fa-sm text-yellow-500 mr-1"></i>
-                  </li>
-                  <li>
-                    <i class="fas fa-star fa-sm text-yellow-500 mr-1"></i>
-                  </li>
-                  <li>
-                    <i class="fas fa-star fa-sm text-yellow-500 mr-1"></i>
-                  </li>
-                  <li>
-                    <i class="fas fa-star fa-sm text-yellow-500 mr-1"></i>
-                  </li>
-                </ul>
-              </div>
-              <a href={link}>
-                <button className="buttonLargeGreen">Website</button>
-              </a>
-            </div>
-          </p>
+  return (
+    <div class="rec max-w-sm lg:max-w-full lg:flex m-3 shadow-lg">
+      <div
+        class="h-48 lg:h-auto lg:w-48 rounded-r-none flex-none bg-cover rounded text-center"
+        style={{ backgroundImage: "url(" + img + ")" }}
+      ></div>
+      <div class="bg-white rounded p-4 flex flex-col justify-between leading-normal w-full">
+        <div class="mb-8">
+          <div class="text-gray-900 font-bold text-xl mb-2">{name}</div>
+          <p class="text-gray-700 text-base">{description}</p>
+          <div className="flex">
+            <ul class="flex justify-right mt-5 mb-3 ">
+              <span className="mr-3">Rating: </span>
+              {[...Array(rating)].map((x, i) => (
+                <li>
+                  <i class="fas fa-star fa-sm text-yellow-500 mr-1"></i>
+                </li>
+              ))}
+            </ul>
+            <ul class="flex justify-right mt-5 mb-3 ">
+              <span className="ml-3 mr-3">Cost: </span>
+              {[...Array(price)].map((x, i) => (
+                <li>
+                  <i class="fas fa-dollar-sign fa-sm text-yellow-500 mr-1"></i>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-class Restaurants extends Component {
-  render() {
-    return (
-      <div>
-        <div className="grid grid-cols-2 grid-rows-2 flex ">
-          {RESTAURANTS.map((RESTAURANT) => {
-            return (
-              <div>
-                <Restaurant key={RESTAURANT.id} restaurant={RESTAURANT} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
+function Restaurants() {
+  return (
+    <div className="grid grid-cols-2">
+      {RESTAURANTS.map((RESTAURANT) => {
+        return <Restaurant key={RESTAURANT.id} restaurantData={RESTAURANT} />;
+      })}
+    </div>
+  );
 }
 
 export default Restaurants;
